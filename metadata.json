@@ -1,0 +1,6 @@
+{
+  "name": "Mundo Moda Shop - Boutique Oficial",
+  "description": "Boutique oficial de Mundo Moda Shop. Catálogo de prendas, carga masiva de productos por fotos, cuadre de caja y ventas (a crédito y contado), control de créditos y cobranzas, tasa oficial BCV y sincronización en la nube.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

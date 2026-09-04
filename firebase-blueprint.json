@@ -1,0 +1,72 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Boutique fashion item in the catalog",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique product identifier" },
+        "name": { "type": "string", "description": "Product title", "maxLength": 200 },
+        "productType": { "type": "string", "description": "Type of apparel or perfume" },
+        "category": { "type": "string", "description": "Target audience category (dama, caballero, unisex)" },
+        "cut": { "type": "string", "description": "Jean cut or style specification" },
+        "priceUSD": { "type": "number", "description": "Price in USD" },
+        "tag": { "type": "string", "description": "Visual label badge" },
+        "rating": { "type": "number", "description": "Star rating" },
+        "reviewsCount": { "type": "number", "description": "Number of customer reviews" },
+        "description": { "type": "string", "description": "Item description" },
+        "image": { "type": "string", "description": "Main image URL or data URI" },
+        "gallery": { "type": "array", "description": "List of secondary images" },
+        "availableSizes": { "type": "array", "description": "Available clothing or perfume sizes" },
+        "inStock": { "type": "boolean", "description": "Inventory stock availability" }
+      },
+      "required": ["name", "priceUSD", "category"]
+    },
+    "CreditClient": {
+      "title": "CreditClient",
+      "description": "Customer record for credit purchases and installment payments",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique client ID" },
+        "name": { "type": "string", "description": "Client full name" },
+        "phone": { "type": "string", "description": "WhatsApp / Phone number" },
+        "idCard": { "type": "string", "description": "Cédula de Identidad" },
+        "secretCode": { "type": "string", "description": "Access / lookup code" },
+        "balanceUSD": { "type": "number", "description": "Outstanding balance in USD" },
+        "totalPurchasedUSD": { "type": "number", "description": "Total historical purchases" },
+        "purchases": { "type": "array", "description": "Itemized credit purchases" },
+        "payments": { "type": "array", "description": "Payment installment history" },
+        "notes": { "type": "string", "description": "Internal notes" },
+        "createdAt": { "type": "string", "description": "Registration date" }
+      },
+      "required": ["name", "balanceUSD"]
+    },
+    "StoreSettings": {
+      "title": "StoreSettings",
+      "description": "Store configuration and live BCV exchange rate",
+      "type": "object",
+      "properties": {
+        "bcvRate": { "type": "number", "description": "Official BCV exchange rate in Bs." },
+        "adminPin": { "type": "string", "description": "Encrypted or hashed admin access PIN" },
+        "whatsappNumber": { "type": "string", "description": "Customer service WhatsApp number" },
+        "pagoMovil": { "type": "object", "description": "Pago Móvil bank credentials" },
+        "transferencia": { "type": "object", "description": "Bank wire transfer details" }
+      },
+      "required": ["bcvRate"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Collection of clothing, jeans, and perfumes for the boutique catalog"
+    },
+    "/creditClients/{clientId}": {
+      "schema": { "$ref": "#/entities/CreditClient" },
+      "description": "Collection of credit accounts, debt balances, and installment records"
+    },
+    "/storeSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/StoreSettings" },
+      "description": "General boutique configuration and payment details"
+    }
+  }
+}
